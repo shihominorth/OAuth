@@ -8,10 +8,11 @@
 import UIKit
 
 protocol LoginView: AnyObject {
-    
+    func loginBtnTapped()
+    func setPresenter(presenter: LoginPresenter)
 }
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, BindableType {
 
     
     @IBOutlet weak var loginBtn: UIButton!
@@ -22,6 +23,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        loginBtn.addTarget(self, action: #selector(loginBtnTapped), for: .touchUpInside)
+    
     }
     
 
@@ -38,4 +41,12 @@ class LoginViewController: UIViewController {
 }
 
 
-extension LoginViewController: LoginView {}
+extension LoginViewController: LoginView {
+    func setPresenter(presenter: LoginPresenter) {
+        self.presenter = presenter
+    }
+    
+    @objc func loginBtnTapped() {
+        self.presenter.loginButtonTapped()
+    }
+}

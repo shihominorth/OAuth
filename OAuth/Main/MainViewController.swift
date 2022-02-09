@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainView: AnyObject {
-    func updateArticles(articles: [ArticleEntity])
+    func updateArticles(articles: [Article])
 }
 
 class MainViewController: UIViewController {
@@ -17,7 +17,7 @@ class MainViewController: UIViewController {
     
     
     var presenter: MainPresentation!
-    private var articles: [ArticleEntity]!
+    private var articles: [Article]!
     
     
     
@@ -34,7 +34,7 @@ class MainViewController: UIViewController {
         articles = []
         
         for _ in 0...10 {
-            self.articles.append(ArticleEntity(url: "jfakhfahkaflajk", title: "title title"))
+            self.articles.append(Article(url: "jfakhfahkaflajk", title: "title title"))
         }
         
     }
@@ -45,7 +45,7 @@ class MainViewController: UIViewController {
 
 extension MainViewController: MainView {
 
-    func updateArticles(articles: [ArticleEntity]) {
+    func updateArticles(articles: [Article]) {
         self.articles = articles
     }
 

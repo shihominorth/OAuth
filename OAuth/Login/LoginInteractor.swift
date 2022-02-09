@@ -11,14 +11,14 @@ protocol LoginUseCase: AnyObject {
     func login()
 }
 
-class LoginInteractor {
-    
-    
+final class LoginInteractor {
+    weak var presenter: LoginPresentation?
 }
 
 extension LoginInteractor: LoginUseCase {
     
     func login() {
+       
         
     }
 }
