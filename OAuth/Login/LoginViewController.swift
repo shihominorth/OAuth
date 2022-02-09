@@ -12,7 +12,7 @@ protocol LoginView: AnyObject {
     func setPresenter(presenter: LoginPresenter)
 }
 
-class LoginViewController: UIViewController, BindableType {
+class LoginViewController: UIViewController {
 
     
     @IBOutlet weak var loginBtn: UIButton!

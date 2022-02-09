@@ -30,6 +30,6 @@ class LoginPresenter {
 
 extension LoginPresenter: LoginPresentation {
     func loginButtonTapped() {
-        
+        router.showAuthentication()
     }
 }

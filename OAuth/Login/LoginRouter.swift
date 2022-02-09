@@ -21,7 +21,6 @@ class LoginRouter {
     
     static func assembleModules() -> LoginViewController {
         
-//         view = LoginViewController()
         guard let view = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loginVC") as? LoginViewController else {
             fatalError()
         }
