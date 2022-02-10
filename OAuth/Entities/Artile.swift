@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Article: Codable{
+class Article: Codable {
     
     let url: String
     let title: String

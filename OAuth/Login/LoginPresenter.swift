@@ -9,6 +9,7 @@ import Foundation
 
 protocol LoginPresentation: AnyObject {
     func loginButtonTapped()
+    func showMyArtiles(url: URL)
 }
 
 class LoginPresenter {
@@ -29,7 +30,14 @@ class LoginPresenter {
 
 
 extension LoginPresenter: LoginPresentation {
+
     func loginButtonTapped() {
         router.showAuthentication()
     }
+    
+    
+    func showMyArtiles(url: URL) {
+        interactor.showMyArticles(url: url)
+    }
+    
 }

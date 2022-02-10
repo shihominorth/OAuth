@@ -8,7 +8,7 @@
 import Foundation
 
 protocol LoginUseCase: AnyObject {
-    func login()
+    func showMyArticles(url: URL)
 }
 
 final class LoginInteractor {
@@ -17,9 +17,8 @@ final class LoginInteractor {
 
 extension LoginInteractor: LoginUseCase {
     
-    func login() {
-       
-        
+    func showMyArticles(url: URL) {
+        APIService.shared.open(url: url)
     }
-    
+   
 }

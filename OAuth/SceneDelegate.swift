@@ -10,8 +10,8 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
-
+    var loginViewController : LoginViewController?
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
@@ -24,9 +24,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         let navigationController = UINavigationController()
         let loginViewController = LoginRouter.assembleModules()
+        self.loginViewController = loginViewController
         navigationController.viewControllers = [loginViewController]
         window.rootViewController = navigationController
     }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        
+        guard let loginViewController = self.loginViewController, let url = URLContexts.first?.url else {
+            return
+        }
+
+
+        loginViewController.presenter.showMyArtiles(url: url)
+    }
+    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

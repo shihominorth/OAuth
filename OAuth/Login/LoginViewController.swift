@@ -9,7 +9,6 @@ import UIKit
 
 protocol LoginView: AnyObject {
     func loginBtnTapped()
-    func setPresenter(presenter: LoginPresenter)
 }
 
 class LoginViewController: UIViewController {
@@ -42,11 +41,9 @@ class LoginViewController: UIViewController {
 
 
 extension LoginViewController: LoginView {
-    func setPresenter(presenter: LoginPresenter) {
-        self.presenter = presenter
-    }
     
     @objc func loginBtnTapped() {
         self.presenter.loginButtonTapped()
     }
+    
 }
