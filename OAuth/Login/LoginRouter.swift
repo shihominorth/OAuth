@@ -9,6 +9,7 @@ import UIKit
 
 protocol LoginWireframe: AnyObject {
     func showAuthentication()
+    func showMyArtiles()
 }
 
 class LoginRouter {
@@ -42,6 +43,17 @@ class LoginRouter {
 
 
 extension LoginRouter: LoginWireframe {
+   
+    
+    func showMyArtiles() {
+        
+        guard let navigationController = self.viewController.navigationController else { return }
+        
+        let mainViewController = MainRouter.assembleModules()
+        navigationController.pushViewController(mainViewController, animated: true)
+        
+    }
+    
     
     func showAuthentication() {
         

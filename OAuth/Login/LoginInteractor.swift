@@ -18,7 +18,7 @@ final class LoginInteractor {
 extension LoginInteractor: LoginUseCase {
     
     func showMyArticles(url: URL) {
-        APIService.shared.open(url: url)
+      
     }
    
 }

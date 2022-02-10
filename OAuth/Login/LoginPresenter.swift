@@ -37,7 +37,9 @@ extension LoginPresenter: LoginPresentation {
     
     
     func showMyArtiles(url: URL) {
-        interactor.showMyArticles(url: url)
+//        interactor.showMyArticles(url: url)
+        
+        router.showMyArtiles()
     }
     
 }

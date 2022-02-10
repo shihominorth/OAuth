@@ -13,7 +13,7 @@ protocol MainWireframe {
 
 final class MainRouter {
     
-    private unowned let viewController: UIViewController
+    private unowned var viewController: UIViewController
     
     private init(viewController: UIViewController) {
         
@@ -22,9 +22,12 @@ final class MainRouter {
     }
     
     
-    static func assembleModules(viewController: UIViewController) -> UIViewController {
+    static func assembleModules() -> UIViewController {
         
-        let view = MainViewController()
+        guard let view = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainVC") as? MainViewController else {
+            fatalError()
+        }
+        
         let router = MainRouter(viewController: view)
         let interactor = MainInteractor()
         let presenter = MainPresenter(
@@ -33,6 +36,8 @@ final class MainRouter {
         interactor: interactor
         )
         view.presenter = presenter
+        interactor.presenter = presenter
+        router.viewController = view
         
         return view
         
