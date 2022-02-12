@@ -18,10 +18,10 @@ class MainViewController: UIViewController {
     
     
     var presenter: MainPresentation!
-   
+    
     private var user: User?
     private var articles: [Article]!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,16 +30,16 @@ class MainViewController: UIViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
-
+        
         articles = []
         
         self.presenter.viewDidLoad()
         
-//
-//        for _ in 0...10 {
-//            self.articles.append(Article(url: "fldfjalfklakfjlafja", title: "dfadfafafaf", lgtm: 12))
-//        }
-//
+        //
+        //        for _ in 0...10 {
+        //            self.articles.append(Article(url: "fldfjalfklakfjlafja", title: "dfadfafafaf", lgtm: 12))
+        //        }
+        //
     }
     
     
@@ -81,15 +81,30 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.frame.width - 15) / 2, height: 300.0)
+        
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
+        layout.minimumInteritemSpacing = 5.0
+        layout.minimumLineSpacing = 5.0
+        layout.invalidateLayout()
+
+
+        return CGSize(width: (self.view.frame.width - 15.0) / 2, height: 300.0)
+        
+//        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+//            layout.sectionInset = UIEdgeInsets(top: 6, left: 4, bottom: 6, right: 4)
+//            layout.minimumInteritemSpacing = 04
+//            layout.minimumLineSpacing = 04
+//            layout.invalidateLayout()
+//            return CGSize(width: ((self.view.frame.width/2) - 6), height: ((self.view.frame.width / 2) - 6))
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 5.0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return  UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 5.0
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return  UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
+//    }
 }
 

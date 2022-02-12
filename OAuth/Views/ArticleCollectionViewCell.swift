@@ -51,24 +51,11 @@ class ArticleCollectionViewCell: UICollectionViewCell {
         self.contentView.addSubview(imgView)
         self.contentView.addSubview(titleLbl)
         self.contentView.addSubview(publisherNameLbl)
-//        NSLayoutConstraint.activate([
-//            imgView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
-//            imgView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-//            imgView.widthAnchor.constraint(equalToConstant: self.contentView.frame.width * 0.9),
-//            imgView.heightAnchor.constraint(equalToConstant: self.contentView.frame.width * 0.9)
-//        ])
-//
-        
-//        NSLayoutConstraint.activate([
-//            titleLbl.leadingAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.leadingAnchor),
-//            titleLbl.topAnchor.constraint(equalTo: self.imgView.bottomAnchor, constant: 10),
-//            titleLbl.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-//            titleLbl.widthAnchor.constraint(equalToConstant: self.contentView.frame.width * 0.9)
-//        ])
         
         NSLayoutConstraint.activate([
             titleLbl.leadingAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.leadingAnchor),
             titleLbl.topAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.topAnchor),
+            titleLbl.widthAnchor.constraint(equalToConstant: self.contentView.frame.width * 0.9),
             titleLbl.trailingAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.trailingAnchor),
             titleLbl.heightAnchor.constraint(equalToConstant: self.contentView.frame.height * 0.6)
         ])
@@ -84,7 +71,7 @@ class ArticleCollectionViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             publisherNameLbl.leadingAnchor.constraint(equalTo: imgView.trailingAnchor, constant: 10),
-            publisherNameLbl.topAnchor.constraint(equalTo: titleLbl.bottomAnchor, constant: 10.0),
+            publisherNameLbl.centerYAnchor.constraint(equalTo: imgView.centerYAnchor),
             publisherNameLbl.trailingAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.trailingAnchor)
         ])
         
@@ -105,6 +92,7 @@ class ArticleCollectionViewCell: UICollectionViewCell {
         // from being clipped to the corner radius
         layer.cornerRadius = 15.0
         layer.masksToBounds = false
+        layer.borderWidth = 1.0
         
         // Apply a shadow
         layer.shadowRadius = 8.0
