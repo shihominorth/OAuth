@@ -37,9 +37,22 @@ extension LoginPresenter: LoginPresentation {
     
     
     func showMyArtiles(url: URL) {
-//        interactor.showMyArticles(url: url)
         
-        router.showMyArtiles()
+        interactor.showMyArticles(url: url) { [unowned self] err in
+        
+            if let err = err {
+                
+                print(err)
+                
+            } else {
+                
+                self.router.showMyArtiles()
+            
+            }
+            
+        }
+        
+      
     }
     
 }

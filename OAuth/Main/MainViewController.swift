@@ -8,7 +8,8 @@
 import UIKit
 
 protocol MainView: AnyObject {
-    func updateArticles(articles: [Article])
+    func update(articles: [Article], user: User)
+    
 }
 
 class MainViewController: UIViewController {
@@ -17,10 +18,10 @@ class MainViewController: UIViewController {
     
     
     var presenter: MainPresentation!
+   
+    private var user: User?
     private var articles: [Article]!
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,14 +30,16 @@ class MainViewController: UIViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        
-        //        self.articles = [Article(url: "jfakhfahkaflajk", title: "title title"), Article(url: "dfjahahfljksdlfj", title: "title title sdkfjlakfjla")]
+
         articles = []
         
-        for _ in 0...10 {
-            self.articles.append(Article(url: "jfakhfahkaflajk", title: "title title"))
-        }
+        self.presenter.viewDidLoad()
         
+//
+//        for _ in 0...10 {
+//            self.articles.append(Article(url: "fldfjalfklakfjlafja", title: "dfadfafafaf", lgtm: 12))
+//        }
+//
     }
     
     
@@ -44,11 +47,14 @@ class MainViewController: UIViewController {
 
 
 extension MainViewController: MainView {
-
-    func updateArticles(articles: [Article]) {
+    func update(articles: [Article], user: User) {
+        
+        self.user = user
         self.articles = articles
+        
+        self.collectionView.reloadData()
+        
     }
-
 }
 
 
@@ -66,8 +72,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
             cell.titleLbl.text = self.articles[indexPath.row].title
             cell.imgView.image = UIImage(systemName: "square.and.arrow.up")
-
-
+            cell.publisherNameLbl.text = self.user?.name
             
             return cell
         }

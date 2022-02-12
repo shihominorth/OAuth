@@ -11,15 +11,16 @@ class ArticleCollectionViewCell: UICollectionViewCell {
     
     let imgView: UIImageView
     let titleLbl: UILabel
+    let publisherNameLbl: UILabel
     
     override init(frame: CGRect) {
         
         imgView = {
-            
+
             let imgView = UIImageView()
             imgView.translatesAutoresizingMaskIntoConstraints = false
             imgView.accessibilityIdentifier = "main img view"
-            
+
             return imgView
         }()
         
@@ -28,6 +29,17 @@ class ArticleCollectionViewCell: UICollectionViewCell {
             let lbl = UILabel()
             lbl.translatesAutoresizingMaskIntoConstraints = false
             lbl.accessibilityIdentifier = "title lbl"
+            lbl.numberOfLines = 0
+            
+            return lbl
+            
+        }()
+        
+        publisherNameLbl = {
+            
+            let lbl = UILabel()
+            lbl.translatesAutoresizingMaskIntoConstraints = false
+            lbl.accessibilityIdentifier = "publisher lbl"
             
             return lbl
             
@@ -38,20 +50,42 @@ class ArticleCollectionViewCell: UICollectionViewCell {
         
         self.contentView.addSubview(imgView)
         self.contentView.addSubview(titleLbl)
+        self.contentView.addSubview(publisherNameLbl)
+//        NSLayoutConstraint.activate([
+//            imgView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
+//            imgView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+//            imgView.widthAnchor.constraint(equalToConstant: self.contentView.frame.width * 0.9),
+//            imgView.heightAnchor.constraint(equalToConstant: self.contentView.frame.width * 0.9)
+//        ])
+//
+        
+//        NSLayoutConstraint.activate([
+//            titleLbl.leadingAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.leadingAnchor),
+//            titleLbl.topAnchor.constraint(equalTo: self.imgView.bottomAnchor, constant: 10),
+//            titleLbl.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+//            titleLbl.widthAnchor.constraint(equalToConstant: self.contentView.frame.width * 0.9)
+//        ])
         
         NSLayoutConstraint.activate([
-            imgView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
-            imgView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-            imgView.widthAnchor.constraint(equalToConstant: self.contentView.frame.width * 0.9),
-            imgView.heightAnchor.constraint(equalToConstant: self.contentView.frame.width * 0.9)
+            titleLbl.leadingAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.leadingAnchor),
+            titleLbl.topAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.topAnchor),
+            titleLbl.trailingAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.trailingAnchor),
+            titleLbl.heightAnchor.constraint(equalToConstant: self.contentView.frame.height * 0.6)
+        ])
+        
+        NSLayoutConstraint.activate([
+            imgView.widthAnchor.constraint(equalToConstant: self.contentView.frame.width * 0.2),
+            imgView.heightAnchor.constraint(equalToConstant: self.contentView.frame.width * 0.2),
+            imgView.leadingAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.leadingAnchor),
+            imgView.topAnchor.constraint(equalTo: titleLbl.bottomAnchor, constant: 10.0),
+            
         ])
         
         
         NSLayoutConstraint.activate([
-            titleLbl.leadingAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.leadingAnchor),
-            titleLbl.topAnchor.constraint(equalTo: self.imgView.bottomAnchor, constant: 10),
-            titleLbl.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-            titleLbl.widthAnchor.constraint(equalToConstant: self.contentView.frame.width * 0.9)
+            publisherNameLbl.leadingAnchor.constraint(equalTo: imgView.trailingAnchor, constant: 10),
+            publisherNameLbl.topAnchor.constraint(equalTo: titleLbl.bottomAnchor, constant: 10.0),
+            publisherNameLbl.trailingAnchor.constraint(equalTo: self.contentView.layoutMarginsGuide.trailingAnchor)
         ])
         
     }

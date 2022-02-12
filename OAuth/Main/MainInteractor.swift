@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MainUseCase {
-    func getArticles()
+    func getMyInfo(completion: @escaping (Result<([Article], User), Error>) -> Void)
 }
 
 
@@ -18,7 +18,17 @@ class MainInteractor {
 
 
 extension MainInteractor: MainUseCase {
-    func getArticles() {
+    func getMyInfo(completion: @escaping (Result<([Article], User), Error>) -> Void) {
+        
+        APIService.shared.getMyInfo(completion: completion)
         
     }
+    
+   
+    func getMyInfo(completion: (Result<([Article], User), Error>)) {
+        
+ 
+        
+    }
+
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MainPresentation: AnyObject {
-    func getArticles()
+    func viewDidLoad()
 }
 
 class MainPresenter {
@@ -29,9 +29,25 @@ class MainPresenter {
 
 
 extension MainPresenter: MainPresentation {
-    
-    func getArticles() {
-        self.interactor.getArticles()
+
+    func viewDidLoad() {
+        
+        self.interactor.getMyInfo { result in
+            
+            switch result {
+            case let .success((articles, user)):
+                
+                self.view?.update(articles: articles, user: user)
+                
+                
+            case let .failure(err):
+                
+                print(err)
+            
+            }
+            
+        }
+        
     }
     
 }

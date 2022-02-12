@@ -11,8 +11,10 @@ import SwiftyJSON
 
 
 enum APIError: Error {
+    case invaliedData
     case invaliedURL
     case postAccesToken
+    case getItems
 }
 
 class APIService {
@@ -34,23 +36,35 @@ class APIService {
                    "state=\(state)")!
     }
     
-    func open(url: URL) {
+    
+    func open(url: URL, completion: @escaping (Error?) -> Void) {
         
         guard let valiedCode = isValiedCode(url: url) else {
             return
         }
         
-        postAccessToken(code: valiedCode) { articles in
+        postAccessToken(code: valiedCode) { response in
             
-            print(articles)
+            switch response {
+            case .success(let accessToken):
+                
+                UserDefaults.standard.accessToken = accessToken.token
+                
+                completion(nil)
+                
+            case .failure(let err):
+                
+                completion(err)
+                
+            }
             
-        } errHandle: { err in
-            print(err)
         }
-
+        
+        
     }
     
-    func isValiedCode(url: URL) -> String? {
+    
+    private func isValiedCode(url: URL) -> String? {
         
         guard let queryItems = URLComponents(string: url.absoluteString)?.queryItems,
               let code = queryItems.first(where: {$0.name == "code"})?.value,
@@ -64,36 +78,119 @@ class APIService {
         
     }
     
-    func postAccessToken(code: String, completion: @escaping ([Article]) -> Void, errHandle: @escaping (Error) -> Void) {
+    private func postAccessToken(code: String, completion: @escaping (Result<AccessToken, Error>) -> Void) {
+        
         
         let endPoint = "access_tokens"
         guard let url = URL(string: host + endPoint + "?" +
                             "client_id=\(clientID)" + "&" +
                             "client_secret=\(clientSecret)" + "&" +
                             "code=\(code)") else {
-            errHandle(APIError.invaliedURL)
+            completion(.failure(APIError.invaliedURL))
             return
         }
-
+        
         AF.request(url, method: .post).responseDecodable { (response: AFDataResponse<AccessToken>) in
-
-//            do {
+            
+            do {
                 guard
                     let data = response.data else {
-                        errHandle(APIError.postAccesToken)
+                        completion(.failure(APIError.postAccesToken))
+                        return
+                    }
+                
+                let json = try? JSON(data: data)
+                guard let jsonData = json, let accessToken = AccessToken(json: jsonData) else {
                     return
                 }
                 
-                let json = try! JSON(data: data)
-//                let jsonData = json!["posts"][0]["name"]
                 print(json)
-
+                
+                completion(.success(accessToken))
+                
+            } catch (let err) {
+                
+                print(err)
+                
+                
+            }
+        }
+        
+    }
+    
+    func getMyInfo(completion: @escaping (Result<([Article], User), Error>) -> Void){
+        
+        getMyArticles { result in
+            
+            switch result {
+            case let .success(articles, user):
+  
+                completion(.success((articles, user)))
+                
+            case .failure(let err):
+                completion(.failure(err))
+            }
+            
         }
         
     }
     
     
-    func getMyProfileInfo() {
+    func getMyArticles(completion: @escaping (Result<([Article], User), Error>) -> Void) {
+        
+        let endPoint = "authenticated_user/items"
+
+        guard let url = URL(string: host + endPoint),
+              
+              !UserDefaults.standard.accessToken.isEmpty else {
+                  completion(.failure(APIError.getItems))
+                  
+                  return
+              }
+        
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(UserDefaults.standard.accessToken)"
+        ]
+        let parameters = [
+            "page": 1,
+            "per_page": 20
+        ]
+        
+        AF.request(url, method: .get, parameters: parameters, headers: headers).responseDecodable { (response: AFDataResponse<[Article]>) in
+            
+            do {
+                guard
+                    let data = response.data else {
+                        completion(.failure(APIError.invaliedData))
+                        return
+                    }
+                
+                let json = try? JSON(data: data)
+                guard
+                    let jsonData = json
+                
+                else {
+                    return
+                }
+                
+                if let unwrappedData = jsonData.array, let myProfileJSON = unwrappedData.first?["user"], let user = User(json: myProfileJSON) {
+                    
+                    let articles = unwrappedData.compactMap { Article(json: $0) }
+                    completion(.success((articles, user)))
+                    
+                }
+                
+               
+            } catch (let err) {
+                
+                print(err)
+                
+                
+            }
+            
+        }
+        
         
     }
     
