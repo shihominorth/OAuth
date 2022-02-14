@@ -9,6 +9,7 @@ import Foundation
 
 protocol MainPresentation: AnyObject {
     func viewDidLoad()
+    func selectedCell(title: String)
 }
 
 class MainPresenter {
@@ -49,5 +50,11 @@ extension MainPresenter: MainPresentation {
         }
         
     }
+    
+    func selectedCell(title: String) {
+        router.edit(title: title)
+    }
+    
+
     
 }

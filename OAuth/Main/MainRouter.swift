@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainWireframe {
-    
+    func edit(title: String)
 }
 
 final class MainRouter {
@@ -18,6 +18,7 @@ final class MainRouter {
     private init(viewController: UIViewController) {
         
         self.viewController = viewController
+        
         
     }
     
@@ -46,4 +47,15 @@ final class MainRouter {
 }
 
 
-extension MainRouter: MainWireframe {}
+extension MainRouter: MainWireframe {
+    
+    func edit(title: String) {
+        
+        guard let navigationController = viewController.navigationController else { return }
+        let editTitleVC = EditTitleRouter.assembleModules(title: title)
+        
+        navigationController.pushViewController(editTitleVC, animated: true)
+    
+    }
+    
+}

@@ -53,7 +53,51 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="34.782608695652179" y="83.705357142857139"/>
+            <point key="canvasLocation" x="1852" y="92"/>
+        </scene>
+        <!--Edit Title View Controller-->
+        <scene sceneID="djj-e5-wRu">
+            <objects>
+                <viewController storyboardIdentifier="editTitleVC" id="EFh-FB-E9P" customClass="EditTitleViewController" customModule="OAuth" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Sj6-At-STu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25k-qX-xWl">
+                                <rect key="frame" x="20" y="64" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hMA-Gx-aqs" customClass="TextViewWithPlaceholder" customModule="OAuth" customModuleProvider="target">
+                                <rect key="frame" x="20" y="93" width="374" height="128"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="jCV-op-r66"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mLr-HV-5bW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="25k-qX-xWl" firstAttribute="top" secondItem="mLr-HV-5bW" secondAttribute="top" constant="20" id="0vt-ns-QUt"/>
+                            <constraint firstItem="25k-qX-xWl" firstAttribute="leading" secondItem="mLr-HV-5bW" secondAttribute="leading" constant="20" id="2Ot-uM-FJ9"/>
+                            <constraint firstItem="hMA-Gx-aqs" firstAttribute="top" secondItem="25k-qX-xWl" secondAttribute="bottom" constant="8" symbolic="YES" id="Be1-O7-qvr"/>
+                            <constraint firstItem="mLr-HV-5bW" firstAttribute="trailing" secondItem="hMA-Gx-aqs" secondAttribute="trailing" constant="20" id="Fz2-HT-dlk"/>
+                            <constraint firstItem="hMA-Gx-aqs" firstAttribute="leading" secondItem="mLr-HV-5bW" secondAttribute="leading" constant="20" id="ako-FI-AaQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="explanationLbl" destination="25k-qX-xWl" id="vb6-O9-r55"/>
+                        <outlet property="textView" destination="hMA-Gx-aqs" id="Fax-AK-LWi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0x3-xi-VxK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2661" y="94"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Xbr-SP-q51">
@@ -131,6 +175,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -10,6 +10,11 @@
 		6D215B89E8CE8F21579E5531 /* Pods_OAuthTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67CD349E7065C223140BFABB /* Pods_OAuthTests.framework */; };
 		6F1AB51E27B797AB00D63FA9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1AB51D27B797AB00D63FA9 /* User.swift */; };
 		6F1AB52027B7B71400D63FA9 /* UserDefaults+.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1AB51F27B7B71400D63FA9 /* UserDefaults+.swift.swift */; };
+		6F1AB52427BA3EEB00D63FA9 /* TextViewWithPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1AB52327BA3EEB00D63FA9 /* TextViewWithPlaceholder.swift */; };
+		6F1AB52627BA3FB700D63FA9 /* EditTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1AB52527BA3FB700D63FA9 /* EditTitleViewController.swift */; };
+		6F1AB52927BA417B00D63FA9 /* EditTitlePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1AB52827BA417B00D63FA9 /* EditTitlePresenter.swift */; };
+		6F1AB52B27BA419000D63FA9 /* EditTitleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1AB52A27BA419000D63FA9 /* EditTitleRouter.swift */; };
+		6F1AB52D27BA41AA00D63FA9 /* EditInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1AB52C27BA41AA00D63FA9 /* EditInteractor.swift */; };
 		6F5852DF27B28BEA00A317F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5852DE27B28BEA00A317F4 /* AppDelegate.swift */; };
 		6F5852E127B28BEA00A317F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5852E027B28BEA00A317F4 /* SceneDelegate.swift */; };
 		6F5852E327B28BEA00A317F4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5852E227B28BEA00A317F4 /* MainViewController.swift */; };
@@ -59,6 +64,11 @@
 		67CD349E7065C223140BFABB /* Pods_OAuthTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OAuthTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F1AB51D27B797AB00D63FA9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6F1AB51F27B7B71400D63FA9 /* UserDefaults+.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift.swift"; sourceTree = "<group>"; };
+		6F1AB52327BA3EEB00D63FA9 /* TextViewWithPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewWithPlaceholder.swift; sourceTree = "<group>"; };
+		6F1AB52527BA3FB700D63FA9 /* EditTitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTitleViewController.swift; sourceTree = "<group>"; };
+		6F1AB52827BA417B00D63FA9 /* EditTitlePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTitlePresenter.swift; sourceTree = "<group>"; };
+		6F1AB52A27BA419000D63FA9 /* EditTitleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTitleRouter.swift; sourceTree = "<group>"; };
+		6F1AB52C27BA41AA00D63FA9 /* EditInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInteractor.swift; sourceTree = "<group>"; };
 		6F5852DB27B28BEA00A317F4 /* OAuth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OAuth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F5852DE27B28BEA00A317F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6F5852E027B28BEA00A317F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +150,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6F1AB52727BA3FBE00D63FA9 /* EditTitle */ = {
+			isa = PBXGroup;
+			children = (
+				6F1AB52527BA3FB700D63FA9 /* EditTitleViewController.swift */,
+				6F1AB52827BA417B00D63FA9 /* EditTitlePresenter.swift */,
+				6F1AB52A27BA419000D63FA9 /* EditTitleRouter.swift */,
+				6F1AB52C27BA41AA00D63FA9 /* EditInteractor.swift */,
+			);
+			path = EditTitle;
+			sourceTree = "<group>";
+		};
 		6F5852D227B28BEA00A317F4 = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +198,7 @@
 				6F58531D27B2B79500A317F4 /* Login */,
 				6FBFB72827B3BB64008D48D8 /* API.swift */,
 				6F1AB51F27B7B71400D63FA9 /* UserDefaults+.swift.swift */,
+				6F1AB52727BA3FBE00D63FA9 /* EditTitle */,
 			);
 			path = OAuth;
 			sourceTree = "<group>";
@@ -213,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				6F58530E27B28D8C00A317F4 /* ArticleCollectionViewCell.swift */,
+				6F1AB52327BA3EEB00D63FA9 /* TextViewWithPlaceholder.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -496,9 +519,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F58531C27B2B75200A317F4 /* LoginViewController.swift in Sources */,
+				6F1AB52927BA417B00D63FA9 /* EditTitlePresenter.swift in Sources */,
 				6F1AB52027B7B71400D63FA9 /* UserDefaults+.swift.swift in Sources */,
 				6F58531727B2ACC600A317F4 /* MainInteractor.swift in Sources */,
 				6F5852E327B28BEA00A317F4 /* MainViewController.swift in Sources */,
+				6F1AB52B27BA419000D63FA9 /* EditTitleRouter.swift in Sources */,
+				6F1AB52D27BA41AA00D63FA9 /* EditInteractor.swift in Sources */,
 				6F58531527B2AC9100A317F4 /* MainRouter.swift in Sources */,
 				6F58531F27B2B7B200A317F4 /* LoginPresenter.swift in Sources */,
 				6F58531327B2ABB500A317F4 /* MainPresenter.swift in Sources */,
@@ -509,8 +535,10 @@
 				6FBFB72927B3BB64008D48D8 /* API.swift in Sources */,
 				6F58532327B2B7D100A317F4 /* LoginInteractor.swift in Sources */,
 				6F58532127B2B7BF00A317F4 /* LoginRouter.swift in Sources */,
+				6F1AB52427BA3EEB00D63FA9 /* TextViewWithPlaceholder.swift in Sources */,
 				6F58530F27B28D8C00A317F4 /* ArticleCollectionViewCell.swift in Sources */,
 				6F58531127B2926F00A317F4 /* Article.swift in Sources */,
+				6F1AB52627BA3FB700D63FA9 /* EditTitleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

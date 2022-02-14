@@ -90,21 +90,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 
         return CGSize(width: (self.view.frame.width - 15.0) / 2, height: 300.0)
-        
-//        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-//            layout.sectionInset = UIEdgeInsets(top: 6, left: 4, bottom: 6, right: 4)
-//            layout.minimumInteritemSpacing = 04
-//            layout.minimumLineSpacing = 04
-//            layout.invalidateLayout()
-//            return CGSize(width: ((self.view.frame.width/2) - 6), height: ((self.view.frame.width / 2) - 6))
+ 
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.presenter.selectedCell(title: articles[indexPath.row].title)
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 5.0
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return  UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
-//    }
 }
 
