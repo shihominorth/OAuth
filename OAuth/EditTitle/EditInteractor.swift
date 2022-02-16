@@ -20,22 +20,22 @@ extension EditTitleInteractor: EditTitleUseCase {
    
     func edit(article: Article, title: String, completion: @escaping () -> Void) {
         
-        APIService.shared.edit(article: article, newTitle: title) { result in
-            
-            switch result {
-            case .success(let article):
-                
-                print(article)
-                
-                completion()
-                
-            case .failure(let err):
-                
-                print(err)
-                
-            }
-            
-        }
+//        APIService.shared.edit(article: article, newTitle: title) { result in
+//            
+//            switch result {
+//            case .success(let article):
+//                
+//                print(article)
+//                
+//                completion()
+//                
+//            case .failure(let err):
+//                
+//                print(err)
+//                
+//            }
+//            
+//        }
         
         
     }

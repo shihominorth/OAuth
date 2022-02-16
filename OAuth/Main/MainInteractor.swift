@@ -12,7 +12,7 @@ protocol MainUseCase {
 }
 
 
-class MainInteractor {
+final class MainInteractor {
     weak var presenter: MainPresentation?
 }
 

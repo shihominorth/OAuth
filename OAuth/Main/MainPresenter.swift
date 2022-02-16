@@ -12,7 +12,7 @@ protocol MainPresentation: AnyObject {
     func selectedCell(article: Article)
 }
 
-class MainPresenter {
+final class MainPresenter {
     
     private weak var view: MainView?
     private let router: MainWireframe
