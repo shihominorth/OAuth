@@ -7,6 +7,7 @@ target 'OAuth' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'AlamofireNetworkActivityLogger', '~> 3.4'
+  pod 'Kingfisher'
   # Pods for OAuth
 
   target 'OAuthTests' do

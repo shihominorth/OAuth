@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol MainView: AnyObject {
     func update(articles: [Article], user: User)
@@ -72,7 +73,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "articleCVCell", for: indexPath) as? ArticleCollectionViewCell {
             
             cell.titleLbl.text = self.articles[indexPath.row].title
-            cell.imgView.image = UIImage(systemName: "square.and.arrow.up")
+            
+            
+            if let myInfo = self.user {
+                cell.imgView.kf.setImage(with: myInfo.profile_image_url)
+            }
+          
             cell.publisherNameLbl.text = self.user?.name
             
             return cell
