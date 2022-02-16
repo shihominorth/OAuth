@@ -8,8 +8,8 @@
 import Foundation
 
 protocol MainPresentation: AnyObject {
-    func viewDidLoad()
-    func selectedCell(title: String)
+    func viewWillAppear()
+    func selectedCell(article: Article)
 }
 
 class MainPresenter {
@@ -31,7 +31,7 @@ class MainPresenter {
 
 extension MainPresenter: MainPresentation {
 
-    func viewDidLoad() {
+    func viewWillAppear() {
         
         self.interactor.getMyInfo { result in
             
@@ -51,8 +51,8 @@ extension MainPresenter: MainPresentation {
         
     }
     
-    func selectedCell(title: String) {
-        router.edit(title: title)
+    func selectedCell(article: Article) {
+        router.edit(article: article)
     }
     
 

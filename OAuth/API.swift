@@ -99,6 +99,11 @@ class APIService {
                         return
                     }
                 
+                
+                if let err = response.error {
+                    completion(.failure(err))
+                }
+                
                 let json = try? JSON(data: data)
                 guard let jsonData = json, let accessToken = AccessToken(json: jsonData) else {
                     return
@@ -107,11 +112,6 @@ class APIService {
                 print(json)
                 
                 completion(.success(accessToken))
-                
-            } catch (let err) {
-                
-                print(err)
-                
                 
             }
         }
@@ -123,8 +123,8 @@ class APIService {
         getMyArticles { result in
             
             switch result {
-            case let .success(articles, user):
-  
+            case let .success((articles, user)):
+                
                 completion(.success((articles, user)))
                 
             case .failure(let err):
@@ -139,14 +139,14 @@ class APIService {
     func getMyArticles(completion: @escaping (Result<([Article], User), Error>) -> Void) {
         
         let endPoint = "authenticated_user/items"
-
+        
         guard let url = URL(string: host + endPoint),
               
-              !UserDefaults.standard.accessToken.isEmpty else {
-                  completion(.failure(APIError.getItems))
-                  
-                  return
-              }
+                !UserDefaults.standard.accessToken.isEmpty else {
+                    completion(.failure(APIError.getItems))
+                    
+                    return
+                }
         
         
         let headers: HTTPHeaders = [
@@ -165,11 +165,14 @@ class APIService {
                         completion(.failure(APIError.invaliedData))
                         return
                     }
+                if let err = response.error {
+                    completion(.failure(err))
+                }
                 
                 let json = try? JSON(data: data)
                 guard
                     let jsonData = json
-                
+                        
                 else {
                     return
                 }
@@ -181,11 +184,6 @@ class APIService {
                     
                 }
                 
-               
-            } catch (let err) {
-                
-                print(err)
-                
                 
             }
             
@@ -195,5 +193,63 @@ class APIService {
     }
     
     
+    func edit(article: Article, newTitle: String, completion: @escaping (Result<Article, Error>) -> Void) {
+        
+        let endPoint = "items/\(article.id)"
+        let urlString = host + endPoint
+        
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json",
+            "Authorization": "Bearer \(UserDefaults.standard.accessToken)"
+        ]
+        
+        let parameters = [
+            "body": article.body,
+            "title": newTitle
+        ]
+        
+        
+        AF.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseDecodable { (response: AFDataResponse<Article>) in
+            
+            do {
+                guard
+                    let data = response.data,  let dataString = String(data: data, encoding: .utf8) else {
+                        completion(.failure(APIError.invaliedData))
+                        return
+                    }
+
+                print(dataString)
+
+                if let err = response.error {
+                
+                    completion(.failure(err))
+                
+                }
+                else {
+                    
+                    let json = try? JSON(data: data)
+                    guard
+                        let jsonData = json,
+                        let article = Article(json: jsonData)
+                    else {
+                        return
+                    }
+                    
+                    completion(.success(article))
+                        
+                }
+               
+                
+            }
+            
+            
+        }
+        
+        
+    }
     
 }

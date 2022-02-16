@@ -16,7 +16,6 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    
     var presenter: MainPresentation!
     
     private var user: User?
@@ -32,14 +31,16 @@ class MainViewController: UIViewController {
         collectionView.dataSource = self
         
         articles = []
+   
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
         
-        self.presenter.viewDidLoad()
+        super.viewWillAppear(animated)
         
-        //
-        //        for _ in 0...10 {
-        //            self.articles.append(Article(url: "fldfjalfklakfjlafja", title: "dfadfafafaf", lgtm: 12))
-        //        }
-        //
+        self.presenter.viewWillAppear()
+
     }
     
     
@@ -94,7 +95,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.presenter.selectedCell(title: articles[indexPath.row].title)
+        self.presenter.selectedCell(article: articles[indexPath.row])
     }
     
 }

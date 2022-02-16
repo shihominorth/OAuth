@@ -8,36 +8,66 @@
 import Foundation
 import SwiftyJSON
 
-struct Article: Codable {
+struct Article {
     
+    let id: String
     let url: String
     let title: String
     let lgtm: Int
-    
-    init(url: String, title: String, lgtm: Int) {
+    let body: String
+
+    enum CodingKeys: String, CodingKey {
+        case id, url, title, body, lgtm = "likes_count"
+
+    }
+
+    init(id: String, url: String, title: String, lgtm: Int, body: String) {
        
+        self.id = id
         self.url = url
         self.title = title
         self.lgtm = lgtm
+        self.body = body
     
     }
     
     init?(json: JSON) {
     
-        guard let url = json["url"].string,
-        let title = json["title"].string,
-            let lgtm = json["likes_count"].int
+        guard
+            let id = json["id"].string,
+            let url = json["url"].string,
+            let title = json["title"].string,
+            let lgtm = json["likes_count"].int,
+            let body = json["body"].string
         else {
             return nil
         }
         
-        
+        self.id = id
         self.url = url
         self.title = title
         self.lgtm = lgtm
+        self.body = body
     
     }
     
+   
     
     
+}
+
+extension Article: Codable {
+
+    init(from decoder: Decoder) throws {
+   
+       let values = try decoder.container(keyedBy: CodingKeys.self)
+
+        id = try values.decode(String.self, forKey: .id)
+        url = try values.decode(String.self, forKey: .url)
+        title = try values.decode(String.self, forKey: .title)
+        lgtm = try values.decode(Int.self, forKey: .lgtm)
+        body = try values.decode(String.self, forKey: .body)
+        
+   
+   }
 }

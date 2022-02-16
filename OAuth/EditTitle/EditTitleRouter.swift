@@ -8,7 +8,7 @@
 import UIKit
 
 protocol EditTitleWireframe: AnyObject{
-    
+    func back()
 }
 
 class EditTitleRouter {
@@ -21,7 +21,7 @@ class EditTitleRouter {
     
     
     
-    static func assembleModules(title: String) -> UIViewController {
+    static func assembleModules(article: Article) -> UIViewController {
         
         guard let view = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "editTitleVC") as? EditTitleViewController else {
             fatalError()
@@ -35,7 +35,7 @@ class EditTitleRouter {
         interactor: interactor
         )
         view.presenter = presenter
-        view.edittingTitle = title
+        view.article = article
         interactor.presenter = presenter
         router.viewController = view
         
@@ -46,4 +46,11 @@ class EditTitleRouter {
 
 
 
-extension EditTitleRouter: EditTitleWireframe {}
+extension EditTitleRouter: EditTitleWireframe {
+    func back() {
+        
+        guard let navigationController = self.viewController.navigationController else { return }
+        navigationController.popViewController(animated: true)
+        
+    }
+}

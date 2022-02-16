@@ -9,25 +9,40 @@ import UIKit
 
 
 protocol EditTitleView: AnyObject {
-    
+    func didEditBtnTapped()
 }
 
 class EditTitleViewController: UIViewController {
 
     @IBOutlet var explanationLbl: UILabel!
     @IBOutlet weak var textView: TextViewWithPlaceholder!
+    var editBtn: UIBarButtonItem!
     
     var presenter: EditTitlePresenter!
-    var edittingTitle: String!
+    var article: Article!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         explanationLbl.text = "タイトルを編集してください"
-        textView.text = edittingTitle
+        textView.text = article.title
         textView.layer.borderWidth = 1.0
         textView.layer.borderColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
 //        textView.placeHolder = "bubbbbbbbb"
+        
+        editBtn = {
+           
+            let btn = UIBarButtonItem()
+            btn.title = "Edit"
+            btn.action = #selector(didEditBtnTapped)
+            
+            return btn
+        
+        }()
+        
+        
+        self.navigationItem.rightBarButtonItem = editBtn
+        
     }
     
 
@@ -44,4 +59,8 @@ class EditTitleViewController: UIViewController {
 }
 
 
-extension EditTitleViewController: EditTitleView {} 
+extension EditTitleViewController: EditTitleView {
+    @objc func didEditBtnTapped() {
+        self.presenter.didEditBtnTapped(article: article, newTitle: self.textView.text)
+    }
+}

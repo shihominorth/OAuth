@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainWireframe {
-    func edit(title: String)
+    func edit(article: Article)
 }
 
 final class MainRouter {
@@ -49,10 +49,10 @@ final class MainRouter {
 
 extension MainRouter: MainWireframe {
     
-    func edit(title: String) {
+    func edit(article: Article) {
         
         guard let navigationController = viewController.navigationController else { return }
-        let editTitleVC = EditTitleRouter.assembleModules(title: title)
+        let editTitleVC = EditTitleRouter.assembleModules(article: article)
         
         navigationController.pushViewController(editTitleVC, animated: true)
     

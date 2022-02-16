@@ -6,6 +6,7 @@ target 'OAuth' do
   use_frameworks!
   pod 'Alamofire'
   pod 'SwiftyJSON'
+  pod 'AlamofireNetworkActivityLogger', '~> 3.4'
   # Pods for OAuth
 
   target 'OAuthTests' do

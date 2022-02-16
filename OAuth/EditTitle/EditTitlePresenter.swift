@@ -8,7 +8,7 @@
 import Foundation
 
 protocol EditTitlePresentation: AnyObject {
-    
+    func didEditBtnTapped(article: Article, newTitle: String)
 }
 
 class EditTitlePresenter {
@@ -27,4 +27,15 @@ class EditTitlePresenter {
     
 }
 
-extension EditTitlePresenter: EditTitlePresentation {}
+extension EditTitlePresenter: EditTitlePresentation {
+    
+    func didEditBtnTapped(article: Article, newTitle: String) {
+        
+        self.interactor?.edit(article: article, title: newTitle) { [unowned self] in
+            self.router?.back()
+        }
+        
+    }
+    
+   
+}
