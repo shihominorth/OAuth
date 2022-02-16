@@ -16,43 +16,6 @@ struct Article {
     let lgtm: Int
     let body: String
     let publisher: User
-   
-//    init(id: String, url: String, title: String, lgtm: Int, body: String, publisher: User) {
-//       
-//        self.id = id
-//        self.url = url
-//        self.title = title
-//        self.lgtm = lgtm
-//        self.body = body
-//        self.publisher = publisher
-//        
-//    }
-    
-
-    
-//
-//    init?(json: JSON) {
-//
-//        guard
-//            let id = json["id"].string,
-//            let url = json["url"].string,
-//            let title = json["title"].string,
-//            let lgtm = json["likes_count"].int,
-//            let body = json["body"].string
-//        else {
-//            return nil
-//        }
-//
-//        self.id = id
-//        self.url = url
-//        self.title = title
-//        self.lgtm = lgtm
-//        self.body = body
-//
-//    }
-//
-//
-    
     
 }
 

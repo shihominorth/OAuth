@@ -34,18 +34,6 @@ extension AccessToken: Decodable {
    }
     
     
-//    init?(json: JSON) {
-//    
-//        guard let token = json["token"].string,
-//        let scopes = json["scopes"].arrayObject as? [String],
-//            let clientId = json["client_id"].string else {
-//            return nil
-//        }
-//        
-//        self.token = token
-//        self.clientId = clientId
-//        self.scopes = scopes
-//        
-//    }
+
     
 }

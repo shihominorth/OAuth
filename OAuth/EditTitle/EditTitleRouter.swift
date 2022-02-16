@@ -11,7 +11,7 @@ protocol EditTitleWireframe: AnyObject{
     func back()
 }
 
-class EditTitleRouter {
+final class EditTitleRouter {
     
     private unowned var viewController: EditTitleViewController
     

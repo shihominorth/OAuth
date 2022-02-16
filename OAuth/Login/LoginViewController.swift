@@ -11,7 +11,7 @@ protocol LoginView: AnyObject {
     func loginBtnTapped()
 }
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
 
     
     @IBOutlet weak var loginBtn: UIButton!

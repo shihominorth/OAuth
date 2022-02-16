@@ -12,7 +12,7 @@ protocol LoginWireframe: AnyObject {
     func showMyArtiles()
 }
 
-class LoginRouter {
+final class LoginRouter {
     
     private unowned var viewController: LoginViewController
     

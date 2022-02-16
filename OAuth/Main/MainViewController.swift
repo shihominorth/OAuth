@@ -9,11 +9,11 @@ import UIKit
 import Kingfisher
 
 protocol MainView: AnyObject {
-    func update(articles: [Article], user: User)
+    func update(articles: [Article])
     
 }
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -49,9 +49,9 @@ class MainViewController: UIViewController {
 
 
 extension MainViewController: MainView {
-    func update(articles: [Article], user: User) {
+    func update(articles: [Article]) {
         
-        self.user = user
+        self.user = articles[0].publisher
         self.articles = articles
         
         self.collectionView.reloadData()
