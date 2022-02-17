@@ -9,11 +9,11 @@ import UIKit
 import Kingfisher
 
 protocol MainView: AnyObject {
-    func update(articles: [Article], user: User)
+    func update(articles: [Article])
     
 }
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -49,9 +49,9 @@ class MainViewController: UIViewController {
 
 
 extension MainViewController: MainView {
-    func update(articles: [Article], user: User) {
+    func update(articles: [Article]) {
         
-        self.user = user
+        self.user = articles[0].publisher
         self.articles = articles
         
         self.collectionView.reloadData()
@@ -75,8 +75,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.titleLbl.text = self.articles[indexPath.row].title
             
             
-            if let myInfo = self.user {
-                cell.imgView.kf.setImage(with: myInfo.profile_image_url)
+            if let myInfo = self.user, let url = URL(string: myInfo.profile_image_url_string) {
+                cell.imgView.kf.setImage(with: url)
             }
           
             cell.publisherNameLbl.text = self.user?.name

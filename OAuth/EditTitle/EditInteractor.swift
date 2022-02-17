@@ -12,7 +12,7 @@ protocol EditTitleUseCase: AnyObject {
 }
 
 
-class EditTitleInteractor {
+final class EditTitleInteractor {
     weak var presenter: EditTitlePresenter?
 }
 
@@ -36,7 +36,6 @@ extension EditTitleInteractor: EditTitleUseCase {
             }
             
         }
-        
         
     }
 }

@@ -11,7 +11,7 @@ protocol EditTitlePresentation: AnyObject {
     func didEditBtnTapped(article: Article, newTitle: String)
 }
 
-class EditTitlePresenter {
+final class EditTitlePresenter {
     
     private weak var view: EditTitleView?
     private let router: EditTitleWireframe?

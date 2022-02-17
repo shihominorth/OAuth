@@ -12,7 +12,7 @@ protocol LoginPresentation: AnyObject {
     func showMyArtiles(url: URL)
 }
 
-class LoginPresenter {
+final class LoginPresenter {
     
     private weak var view: LoginView?
     private let router: LoginWireframe

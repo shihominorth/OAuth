@@ -12,7 +12,7 @@ protocol MainPresentation: AnyObject {
     func selectedCell(article: Article)
 }
 
-class MainPresenter {
+final class MainPresenter {
     
     private weak var view: MainView?
     private let router: MainWireframe
@@ -36,9 +36,9 @@ extension MainPresenter: MainPresentation {
         self.interactor.getMyInfo { result in
             
             switch result {
-            case let .success((articles, user)):
+            case let .success(articles):
                 
-                self.view?.update(articles: articles, user: user)
+                self.view?.update(articles: articles)
                 
                 
             case let .failure(err):

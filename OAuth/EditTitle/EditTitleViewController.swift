@@ -12,7 +12,7 @@ protocol EditTitleView: AnyObject {
     func didEditBtnTapped()
 }
 
-class EditTitleViewController: UIViewController {
+final class EditTitleViewController: UIViewController {
 
     @IBOutlet var explanationLbl: UILabel!
     @IBOutlet weak var textView: TextViewWithPlaceholder!

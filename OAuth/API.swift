@@ -12,6 +12,7 @@ import Alamofire
 enum APIError: Error {
     case invaliedData
     case invaliedURL
+    case invailedJSON
     case postAccesToken
     case getItems
 }
@@ -100,42 +101,24 @@ class APIService {
                 
                 
                 if let err = response.error {
+                    
                     completion(.failure(err))
+                    
                 }
-                
-                let json = try? JSON(data: data)
-                guard let jsonData = json, let accessToken = AccessToken(json: jsonData) else {
-                    return
+                else {
+                    
+                    guard let accessToken = try? JSONDecoder().decode(AccessToken.self, from: data) else {
+                        return
+                    }
+                    
+                    completion(.success(accessToken))
                 }
-                
-                print(json)
-                
-                completion(.success(accessToken))
-                
             }
         }
         
     }
     
-    func getMyInfo(completion: @escaping (Result<([Article], User), Error>) -> Void){
-        
-        getMyArticles { result in
-            
-            switch result {
-            case let .success((articles, user)):
-                
-                completion(.success((articles, user)))
-                
-            case .failure(let err):
-                completion(.failure(err))
-            }
-            
-        }
-        
-    }
-    
-    
-    func getMyArticles(completion: @escaping (Result<([Article], User), Error>) -> Void) {
+    func getMyArticles(completion: @escaping (Result<[Article], Error>) -> Void) {
         
         let endPoint = "authenticated_user/items"
         
@@ -159,38 +142,37 @@ class APIService {
         AF.request(url, method: .get, parameters: parameters, headers: headers).responseDecodable { (response: AFDataResponse<[Article]>) in
             
             do {
+                
                 guard
                     let data = response.data else {
                         completion(.failure(APIError.invaliedData))
                         return
                     }
+                
                 if let err = response.error {
+                    
                     completion(.failure(err))
+                    
                 }
-                
-                let json = try? JSON(data: data)
-                guard
-                    let jsonData = json
-                        
                 else {
-                    return
-                }
-                
-                if let unwrappedData = jsonData.array, let myProfileJSON = unwrappedData.first?["user"], let user = User(json: myProfileJSON) {
                     
-                    let articles = unwrappedData.compactMap { Article(json: $0) }
-                    completion(.success((articles, user)))
+                    let articles = try? JSONDecoder().decode([Article].self, from: data)
                     
+                    guard let articles = articles else  {
+                        completion(.failure(APIError.invailedJSON))
+                        
+                        return
+                    }
+                    
+                    completion(.success(articles))
                 }
-                
                 
             }
             
+            
         }
         
-        
     }
-    
     
     func edit(article: Article, newTitle: String, completion: @escaping (Result<Article, Error>) -> Void) {
         
@@ -220,31 +202,28 @@ class APIService {
                         completion(.failure(APIError.invaliedData))
                         return
                     }
-
+                
                 print(dataString)
-
+                
                 if let err = response.error {
-                
+                    
                     completion(.failure(err))
-                
+                    
                 }
                 else {
                     
-                    let json = try? JSON(data: data)
-                    guard
-                        let jsonData = json,
-                        let article = Article(json: jsonData)
-                    else {
+                    let article = try? JSONDecoder().decode(Article.self, from: data)
+                    
+                    guard let article = article else {
                         return
                     }
                     
                     completion(.success(article))
-                        
+                    
                 }
-               
+                
                 
             }
-            
             
         }
         
