@@ -5,7 +5,6 @@ target 'OAuth' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod 'Alamofire'
-  pod 'SwiftyJSON'
   pod 'AlamofireNetworkActivityLogger', '~> 3.4'
   pod 'Kingfisher'
   # Pods for OAuth
@@ -14,13 +13,11 @@ target 'OAuth' do
     inherit! :search_paths
     # Pods for testing
    pod 'Alamofire'
-   pod 'SwiftyJSON'
   end
 
   target 'OAuthUITests' do
     # Pods for testing
    pod 'Alamofire'
-   pod 'SwiftyJSON'
   end
 
 end

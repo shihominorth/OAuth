@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 struct User {
     let id: String

@@ -3,27 +3,23 @@ PODS:
   - AlamofireNetworkActivityLogger (3.4.0):
     - Alamofire (~> 5.4.0)
   - Kingfisher (7.1.2)
-  - SwiftyJSON (5.0.1)
 
 DEPENDENCIES:
   - Alamofire
   - AlamofireNetworkActivityLogger (~> 3.4)
   - Kingfisher
-  - SwiftyJSON
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - AlamofireNetworkActivityLogger
     - Kingfisher
-    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
   AlamofireNetworkActivityLogger: 162ab8aee00e6267a4304d7cc134e13ccfe3bcc5
   Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
-  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: 605b26e1a4739885d9fe5ef39f51b8278d7a33d9
+PODFILE CHECKSUM: a891e1033d9e870d6031b40b7528cca1550246ce
 
 COCOAPODS: 1.11.2
